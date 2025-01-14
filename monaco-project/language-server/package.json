@@ -1,16 +1,22 @@
 {
-  "name": "language-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^22.10.6",
-    "typescript": "^5.7.3"
-  }
+	"name": "language-server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"format": "biome format --write .",
+		"lint": "biome lint --write .",
+		"check": "biome check --write .",
+		"build": "tsc",
+		"dev": "tsc --watch"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/node": "^22.10.6",
+		"typescript": "^5.7.3"
+	}
 }
