@@ -1,8 +1,11 @@
+import type { IncomingMessage } from 'node:http';
 import express from 'express';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import {
   type CompletionItem,
   CompletionItemKind,
+  IPCMessageReader,
+  IPCMessageWriter,
   type InitializeParams,
   type InitializeResult,
   ProposedFeatures,
@@ -11,111 +14,98 @@ import {
   TextDocuments,
   createConnection,
 } from 'vscode-languageserver/node.js';
-import {
-  ConsoleLogger,
-  WebSocketMessageReader,
-  WebSocketMessageWriter,
-  createWebSocketConnection,
-} from 'vscode-ws-jsonrpc';
-import { WebSocketServer } from 'ws';
+import { runLanguageServer } from './language-server-runner.js';
 
-// 言語サーバーの設定
-const connection = createConnection(ProposedFeatures.all);
-const documents = new TextDocuments(TextDocument);
+// Language Server設定
+const startServer = () => {
+  // IPCを使用して接続を作成
+  const connection = createConnection(
+    new IPCMessageReader(process),
+    new IPCMessageWriter(process)
+  );
+  const documents = new TextDocuments(TextDocument);
 
-// 初期化時の処理
-connection.onInitialize((params: InitializeParams): InitializeResult => {
-  return {
-    capabilities: {
-      textDocumentSync: TextDocumentSyncKind.Incremental,
-      completionProvider: {
-        resolveProvider: true,
-        triggerCharacters: ['-', '#', ' '],
+  // 初期化時の処理
+  connection.onInitialize((params: InitializeParams): InitializeResult => {
+    return {
+      capabilities: {
+        textDocumentSync: TextDocumentSyncKind.Incremental,
+        completionProvider: {
+          resolveProvider: true,
+          triggerCharacters: ['-', '#', ' '],
+        },
       },
-    },
-  };
-});
+    };
+  });
 
-// 補完候補の提供
-connection.onCompletion(
-  (_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
-    return [
-      {
-        label: '# ',
-        kind: CompletionItemKind.Snippet,
-        detail: '見出し1',
-        insertText: '# ',
-      },
-      {
-        label: '## ',
-        kind: CompletionItemKind.Snippet,
-        detail: '見出し2',
-        insertText: '## ',
-      },
-      {
-        label: '### ',
-        kind: CompletionItemKind.Snippet,
-        detail: '見出し3',
-        insertText: '### ',
-      },
-      {
-        label: '- ',
-        kind: CompletionItemKind.Snippet,
-        detail: 'リスト',
-        insertText: '- ',
-      },
-      {
-        label: '```',
-        kind: CompletionItemKind.Snippet,
-        detail: 'コードブロック',
-        insertText: '```\\n\\n```',
-      },
-    ];
-  }
-);
+  // 補完候補の提供
+  connection.onCompletion(
+    (_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
+      return [
+        {
+          label: '# ',
+          kind: CompletionItemKind.Snippet,
+          detail: '見出し1',
+          insertText: '# ',
+        },
+        {
+          label: '## ',
+          kind: CompletionItemKind.Snippet,
+          detail: '見出し2',
+          insertText: '## ',
+        },
+        {
+          label: '### ',
+          kind: CompletionItemKind.Snippet,
+          detail: '見出し3',
+          insertText: '### ',
+        },
+        {
+          label: '- ',
+          kind: CompletionItemKind.Snippet,
+          detail: 'リスト',
+          insertText: '- ',
+        },
+        {
+          label: '```',
+          kind: CompletionItemKind.Snippet,
+          detail: 'コードブロック',
+          insertText: '```\\n\\n```',
+        },
+      ];
+    }
+  );
 
-// ドキュメントの管理をconnectionに紐付け
-documents.listen(connection);
-
-// WebSocketサーバーの設定
-const app = express();
-const wss = new WebSocketServer({ noServer: true });
-
-// WebSocketの接続処理
-wss.on('connection', (webSocket) => {
-  const socket = {
-    send: (content: string) => webSocket.send(content),
-    onMessage: (callback: (data: any) => void) =>
-      webSocket.on('message', callback),
-    onError: (callback: (error: Error) => void) =>
-      webSocket.on('error', callback),
-    onClose: (callback: (code: number, reason: string) => void) =>
-      webSocket.on('close', callback),
-    dispose: () => webSocket.close(),
-  };
-
-  // WebSocket接続を言語サーバーのconnectionに変換
-  // const reader = new WebSocketMessageReader(socket);
-  // const writer = new WebSocketMessageWriter(socket);
-  const logger = new ConsoleLogger();
-  const socketConnection = createWebSocketConnection(socket, logger);
-
-  // 言語サーバーの接続を開始
+  // ドキュメントの管理をconnectionに紐付け
+  documents.listen(connection);
   connection.listen();
+};
+
+// Language Serverの起動
+runLanguageServer({
+  serverName: 'MARKDOWN',
+  pathName: '/markdown',
+  serverPort: 3001,
+  wsServerOptions: {
+    noServer: true,
+    perMessageDeflate: false,
+    clientTracking: true,
+    verifyClient: (
+      clientInfo: { origin: string; secure: boolean; req: IncomingMessage },
+      callback: (result: boolean) => void
+    ) => {
+      const parsedURL = new URL(
+        `${clientInfo.origin}${clientInfo.req.url ?? ''}`
+      );
+      const authToken = parsedURL.searchParams.get('authorization');
+      if (authToken === 'UserAuth') {
+        callback(true);
+      } else {
+        callback(false);
+      }
+    },
+  },
+  logMessages: true,
 });
 
-// HTTPサーバーの設定
-const server = app.listen(3001, () => {
-  console.log('Language server is running on port 3001');
-});
-
-// WebSocketサーバーをHTTPサーバーにアップグレード
-server.on('upgrade', (request, socket, head) => {
-  const pathname = new URL(request.url || '', 'http://localhost').pathname;
-
-  if (pathname === '/markdown') {
-    wss.handleUpgrade(request, socket, head, (webSocket) => {
-      wss.emit('connection', webSocket, request);
-    });
-  }
-});
+startServer();

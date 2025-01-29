@@ -8,7 +8,7 @@ import type {
   MonacoEditorLanguageClientWrapper,
   TextChanges,
 } from "monaco-editor-wrapper";
-import * as vscode from "vscode";
+import { URI } from "vscode-uri";
 import { createUserConfig } from "./config";
 
 const sampleMarkdown = `# サンプルマークダウン
@@ -22,7 +22,7 @@ const sampleMarkdown = `# サンプルマークダウン
 `;
 
 function App() {
-  const markdownUri = vscode.Uri.file("/workspace/sample.md");
+  const markdownUri = URI.file("/workspace/sample.md");
   const fileSystemProvider = new RegisteredFileSystemProvider(false);
   fileSystemProvider.registerFile(
     new RegisteredMemoryFile(markdownUri, sampleMarkdown)

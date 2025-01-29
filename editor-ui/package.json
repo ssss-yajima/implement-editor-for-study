@@ -10,12 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@codingame/monaco-vscode-files-service-override": "^13.1.1",
+    "@codingame/monaco-vscode-api": "^11.1.2",
+    "@codingame/monaco-vscode-configuration-service-override": "^11.1.2",
+    "@codingame/monaco-vscode-extensions-service-override": "11.1.2",
+    "@codingame/monaco-vscode-files-service-override": "^11.1.2",
+    "@codingame/monaco-vscode-json-default-extension": "^11.1.2",
+    "@codingame/monaco-vscode-keybindings-service-override": "^11.1.2",
+    "@codingame/monaco-vscode-theme-defaults-default-extension": "^11.1.2",
     "@typefox/monaco-editor-react": "^6.1.1",
-    "monaco-editor": "^0.52.2",
+    "monaco-editor": "^0.44.0",
     "monaco-editor-wrapper": "^6.1.1",
+    "monaco-languageclient": "9.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "vscode-uri": "^3.0.8",
     "vscode-ws-jsonrpc": "^3.4.0"
   },
   "devDependencies": {
