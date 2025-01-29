@@ -1,0 +1,4 @@
+!monaco-examples/src/
+!monaco-examples/*.json
+!monaco-examples/*.ts
+!monaco-examples/*.tsx
