@@ -8,6 +8,7 @@ import type {
   MonacoEditorLanguageClientWrapper,
   TextChanges,
 } from "monaco-editor-wrapper";
+import { useCallback } from "react";
 import { URI } from "vscode-uri";
 import { createUserConfig } from "./config";
 
@@ -29,10 +30,20 @@ function App() {
   );
   registerFileSystemOverlay(1, fileSystemProvider);
 
-  const onTextChanged = (textChanges: TextChanges) => {
-    console.log("onTextChanged");
-    console.log(`Dirty? ${textChanges.isDirty}`);
-  };
+  const onTextChanged = useCallback((textChanges: TextChanges) => {
+    console.log("onTextChanged called");
+    console.log("Changes:", textChanges);
+  }, []);
+
+  const onLoad = useCallback((wrapper: MonacoEditorLanguageClientWrapper) => {
+    console.log(`Loaded ${wrapper.reportStatus().join("\n").toString()}`);
+    const editor = wrapper.getEditor();
+    if (editor) {
+      editor.onDidChangeModelContent((e) => {
+        console.log("Model content changed", e);
+      });
+    }
+  }, []);
 
   const wrapperConfig = createUserConfig(
     "/workspace",
@@ -46,9 +57,7 @@ function App() {
         wrapperConfig={wrapperConfig}
         style={{ height: "100%" }}
         onTextChanged={onTextChanged}
-        onLoad={(wrapper: MonacoEditorLanguageClientWrapper) => {
-          console.log(`Loaded ${wrapper.reportStatus().join("\n").toString()}`);
-        }}
+        onLoad={onLoad}
         onError={(e) => {
           console.error(e);
         }}
