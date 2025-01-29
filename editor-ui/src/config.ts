@@ -1,5 +1,6 @@
 // @ts-expect-error monaco-vscode-apiの型定義が見つからないため
 import * as vscode from "@codingame/monaco-vscode-api";
+import { LogLevel } from "@codingame/monaco-vscode-api/services";
 import getKeybindingsServiceOverride from "@codingame/monaco-vscode-keybindings-service-override";
 import type { WrapperConfig } from "monaco-editor-wrapper";
 import type { MonacoLanguageClient } from "monaco-languageclient";
@@ -9,34 +10,7 @@ import {
 	WebSocketMessageWriter,
 	toSocket,
 } from "vscode-ws-jsonrpc";
-
-// monaco-editorのワーカーを設定する関数
-const configureMonacoWorkers = (logger: any) => {
-	// @ts-expect-error
-	self.MonacoEnvironment = {
-		getWorker: (moduleId: string, label: string) => {
-			logger.info(`Creating worker for ${moduleId}, ${label}`);
-			switch (label) {
-				case "editorWorkerService":
-					return new Worker(
-						new URL(
-							"monaco-editor/esm/vs/editor/editor.worker",
-							import.meta.url,
-						),
-					);
-				case "markdown":
-					return new Worker(
-						new URL(
-							"monaco-editor/esm/vs/basic-languages/markdown/markdown.worker",
-							import.meta.url,
-						),
-					);
-				default:
-					throw new Error(`Unknown label ${label}`);
-			}
-		},
-	};
-};
+import { configureMonacoWorkers } from "./utils";
 
 export const createUserConfig = (
 	workspaceRoot: string,
@@ -56,7 +30,7 @@ export const createUserConfig = (
 
 	return {
 		$type: "extended",
-		logLevel: 2,
+		logLevel: LogLevel.Debug,
 		languageClientConfigs: {
 			markdown: {
 				name: "Markdown Language Server Example",

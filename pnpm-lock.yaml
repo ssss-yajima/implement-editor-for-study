@@ -37,16 +37,16 @@ importers:
         version: 11.1.2
       '@typefox/monaco-editor-react':
         specifier: ^6.1.1
-        version: 6.1.1(cxgcxgpciusc5lbtapvhntgyoe)
+        version: 6.1.1(jgixqsmbozcla3tx3cvby6qwfi)
       monaco-editor:
         specifier: ^0.44.0
         version: 0.44.0
       monaco-editor-wrapper:
         specifier: ^6.1.1
-        version: 6.1.1(monaco-languageclient@9.1.1(xrgslh6dyg7jyv7vhvlospek7i))(vscode-ws-jsonrpc@3.4.0)
+        version: 6.1.1(monaco-languageclient@9.1.1(v2oimrjbt6bnatkxidjoetck24))(vscode-ws-jsonrpc@3.4.0)
       monaco-languageclient:
         specifier: 9.1.1
-        version: 9.1.1(xrgslh6dyg7jyv7vhvlospek7i)
+        version: 9.1.1(v2oimrjbt6bnatkxidjoetck24)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -60,6 +60,9 @@ importers:
         specifier: ^3.4.0
         version: 3.4.0
     devDependencies:
+      '@codingame/monaco-vscode-rollup-vsix-plugin':
+        specifier: ^13.1.1
+        version: 13.1.1(rollup@4.32.1)
       '@eslint/js':
         specifier: ^9.17.0
         version: 9.19.0
@@ -389,6 +392,9 @@ packages:
   '@codingame/monaco-vscode-quickaccess-service-override@11.1.2':
     resolution: {integrity: sha512-VT6F25bEtCvVE2kjBOfgiFOQ1V7YynlrhsHXFZEUzVTK0vFM13Za5otS/CTwgI/ml5FRDFjQKYJjKBAWmlPCaw==}
 
+  '@codingame/monaco-vscode-rollup-vsix-plugin@13.1.1':
+    resolution: {integrity: sha512-GBVz+ew6WO0pe2DWvI6b9XSuTpdpN9SNu7Kokiu+cc4l2BmQEIjr3Riqu7QNqXmfsqvv5BYIH0aRCcTyNAlxIw==}
+
   '@codingame/monaco-vscode-textmate-service-override@11.1.2':
     resolution: {integrity: sha512-XYifKsm7QCW0GQQrZbstBPK5z8HSi5hT52ViIvMf/w910kvswW2KDiasEAGEGyyG3WaqTGjtwyNkuo6tlBftlQ==}
 
@@ -629,6 +635,24 @@ packages:
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
+  '@jsonjoy.com/base64@1.1.2':
+    resolution: {integrity: sha512-q6XAnWQDIMA3+FTiOYajoYqySkO+JSat0ytXGSuRdq9uXE7o92gzuQwQM14xaCRlBLGq3v5miDGC4vkVTn54xA==}
+    engines: {node: '>=10.0'}
+    peerDependencies:
+      tslib: '2'
+
+  '@jsonjoy.com/json-pack@1.1.1':
+    resolution: {integrity: sha512-osjeBqMJ2lb/j/M8NCPjs1ylqWIcTRTycIhVB5pt6LgzgeRSb0YRZ7j9RfA8wIUrsr/medIuhVyonXRZWLyfdw==}
+    engines: {node: '>=10.0'}
+    peerDependencies:
+      tslib: '2'
+
+  '@jsonjoy.com/util@1.5.0':
+    resolution: {integrity: sha512-ojoNsrIuPI9g6o8UxhraZQSyF2ByJanAY4cTFbc8Mf2AXEF4aQRGY1dJxyJpuyav8r9FGflEt/Ff3u5Nt6YMPA==}
+    engines: {node: '>=10.0'}
+    peerDependencies:
+      tslib: '2'
+
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -640,6 +664,15 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@rollup/pluginutils@5.1.4':
+    resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
 
   '@rollup/rollup-android-arm-eabi@4.32.1':
     resolution: {integrity: sha512-/pqA4DmqyCm8u5YIDzIdlLcEmuvxb0v8fZdFhVMszSpDTgbQKdw3/mB3eMUHIbubtJ6F9j+LtmyCnHTEqIHyzA==}
@@ -919,6 +952,9 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  buffer-crc32@0.2.13:
+    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
+
   bytes@3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
@@ -973,6 +1009,9 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
+
+  css-url-parser@1.1.4:
+    resolution: {integrity: sha512-gIpYB7ZqfIsd+/kJ8CE4pesAbIUEaZM+30Ylfl7rr0zJONslIchmi3utzY64qHIOhD/wXDrcSo7jU2VDqG7GiQ==}
 
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
@@ -1100,6 +1139,9 @@ packages:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
 
+  estree-walker@2.0.2:
+    resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
+
   esutils@2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
@@ -1222,6 +1264,10 @@ packages:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
     engines: {node: '>= 0.8'}
 
+  hyperdyperid@1.2.0:
+    resolution: {integrity: sha512-Y93lCzHYgGWdrJ66yIktxiaGULYc6oGiABxhcO5AufBeOyoIdZF7bIfLaOrbM0iGIOXQQgxxRrFEnb+Y6w1n4A==}
+    engines: {node: '>=10.18'}
+
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
     engines: {node: '>=0.10.0'}
@@ -1323,6 +1369,10 @@ packages:
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
     engines: {node: '>= 0.6'}
+
+  memfs@4.17.0:
+    resolution: {integrity: sha512-4eirfZ7thblFmqFjywlTmuWVSvccHAJbn1r8qQLzmTO11qcqpohOjmY2mFce6x7x7WtskzRqApPD0hv+Oa74jg==}
+    engines: {node: '>= 4.0.0'}
 
   merge-descriptors@1.0.3:
     resolution: {integrity: sha512-gaNvAS7TZ897/rVaZ0nMtAyxNyi/pdbjbAwUpFQpN70GqnVfOiXpeUUMKRBmzXaSQ8DdTX4/0ms62r2K+hE6mQ==}
@@ -1867,12 +1917,19 @@ packages:
   path-to-regexp@0.1.12:
     resolution: {integrity: sha512-RA1GjUVMnvYFxuqovrEqZoxxW5NUZqbwKtYz/Tt7nXerk0LbLblQmrsgdeOxV5SFHf0UDggjS/bSeOZwt1pmEQ==}
 
+  pend@1.2.0:
+    resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
+
+  picomatch@4.0.2:
+    resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
+    engines: {node: '>=12'}
 
   postcss@8.5.1:
     resolution: {integrity: sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==}
@@ -2003,6 +2060,15 @@ packages:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
 
+  thenby@1.3.4:
+    resolution: {integrity: sha512-89Gi5raiWA3QZ4b2ePcEwswC3me9JIg+ToSgtE0JWeCynLnLxNr/f9G+xfo9K+Oj4AFdom8YNJjibIARTJmapQ==}
+
+  thingies@1.21.0:
+    resolution: {integrity: sha512-hsqsJsFMsV+aD4s3CWKk85ep/3I9XzYV/IXaSouJMYIoDlgyi11cBhsqYe9/geRfB0YIikBQg6raRaM+nIMP9g==}
+    engines: {node: '>=10.18'}
+    peerDependencies:
+      tslib: ^2
+
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -2011,11 +2077,20 @@ packages:
     resolution: {integrity: sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==}
     engines: {node: '>=0.6'}
 
+  tree-dump@1.0.2:
+    resolution: {integrity: sha512-dpev9ABuLWdEubk+cIaI9cHwRNNDjkBBLXTwI4UCUFdQ5xXKqNXoK4FEciw/vxf+NQ7Cb7sGUyeUtORvHIdRXQ==}
+    engines: {node: '>=10.0'}
+    peerDependencies:
+      tslib: '2'
+
   ts-api-utils@2.0.0:
     resolution: {integrity: sha512-xCt/TOAc+EOHS1XPnijD3/yzpH6qg2xppZO1YDqGoVsNXfQfzHpOdNuXwrwOU8u4ITXJyDCTyt8w5g1sZv9ynQ==}
     engines: {node: '>=18.12'}
     peerDependencies:
       typescript: '>=4.8.4'
+
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -2156,6 +2231,10 @@ packages:
 
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
+
+  yauzl@3.2.0:
+    resolution: {integrity: sha512-Ow9nuGZE+qp1u4JIPvg+uCiUr7xGQWdff7JQSk5VGYTAZMDe2q8lxJ10ygv10qmSj031Ty/6FNJpLO4o1Sgc+w==}
+    engines: {node: '>=12'}
 
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -2493,6 +2572,17 @@ snapshots:
     dependencies:
       vscode: '@codingame/monaco-vscode-api@11.1.2'
 
+  '@codingame/monaco-vscode-rollup-vsix-plugin@13.1.1(rollup@4.32.1)':
+    dependencies:
+      '@rollup/pluginutils': 5.1.4(rollup@4.32.1)
+      css-url-parser: 1.1.4
+      memfs: 4.17.0
+      mime-types: 2.1.35
+      thenby: 1.3.4
+      yauzl: 3.2.0
+    transitivePeerDependencies:
+      - rollup
+
   '@codingame/monaco-vscode-textmate-service-override@11.1.2':
     dependencies:
       '@codingame/monaco-vscode-files-service-override': 11.1.2
@@ -2694,6 +2784,22 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@jsonjoy.com/base64@1.1.2(tslib@2.8.1)':
+    dependencies:
+      tslib: 2.8.1
+
+  '@jsonjoy.com/json-pack@1.1.1(tslib@2.8.1)':
+    dependencies:
+      '@jsonjoy.com/base64': 1.1.2(tslib@2.8.1)
+      '@jsonjoy.com/util': 1.5.0(tslib@2.8.1)
+      hyperdyperid: 1.2.0
+      thingies: 1.21.0(tslib@2.8.1)
+      tslib: 2.8.1
+
+  '@jsonjoy.com/util@1.5.0(tslib@2.8.1)':
+    dependencies:
+      tslib: 2.8.1
+
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -2705,6 +2811,14 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.18.0
+
+  '@rollup/pluginutils@5.1.4(rollup@4.32.1)':
+    dependencies:
+      '@types/estree': 1.0.6
+      estree-walker: 2.0.2
+      picomatch: 4.0.2
+    optionalDependencies:
+      rollup: 4.32.1
 
   '@rollup/rollup-android-arm-eabi@4.32.1':
     optional: true
@@ -2763,11 +2877,11 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.32.1':
     optional: true
 
-  '@typefox/monaco-editor-react@6.1.1(cxgcxgpciusc5lbtapvhntgyoe)':
+  '@typefox/monaco-editor-react@6.1.1(jgixqsmbozcla3tx3cvby6qwfi)':
     dependencies:
       monaco-editor: '@codingame/monaco-vscode-editor-api@11.1.2'
-      monaco-editor-wrapper: 6.1.1(monaco-languageclient@9.1.1(xrgslh6dyg7jyv7vhvlospek7i))(vscode-ws-jsonrpc@3.4.0)
-      monaco-languageclient: 9.1.1(xrgslh6dyg7jyv7vhvlospek7i)
+      monaco-editor-wrapper: 6.1.1(monaco-languageclient@9.1.1(v2oimrjbt6bnatkxidjoetck24))(vscode-ws-jsonrpc@3.4.0)
+      monaco-languageclient: 9.1.1(v2oimrjbt6bnatkxidjoetck24)
       react: 18.3.1
       vscode: '@codingame/monaco-vscode-api@11.1.2'
       vscode-ws-jsonrpc: 3.4.0
@@ -3169,6 +3283,8 @@ snapshots:
       node-releases: 2.0.19
       update-browserslist-db: 1.1.2(browserslist@4.24.4)
 
+  buffer-crc32@0.2.13: {}
+
   bytes@3.1.2: {}
 
   call-bind-apply-helpers@1.0.1:
@@ -3215,6 +3331,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  css-url-parser@1.1.4: {}
 
   csstype@3.1.3: {}
 
@@ -3357,6 +3475,8 @@ snapshots:
       estraverse: 5.3.0
 
   estraverse@5.3.0: {}
+
+  estree-walker@2.0.2: {}
 
   esutils@2.0.3: {}
 
@@ -3511,6 +3631,8 @@ snapshots:
       statuses: 2.0.1
       toidentifier: 1.0.1
 
+  hyperdyperid@1.2.0: {}
+
   iconv-lite@0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -3585,6 +3707,13 @@ snapshots:
 
   media-typer@0.3.0: {}
 
+  memfs@4.17.0:
+    dependencies:
+      '@jsonjoy.com/json-pack': 1.1.1(tslib@2.8.1)
+      '@jsonjoy.com/util': 1.5.0(tslib@2.8.1)
+      tree-dump: 1.0.2(tslib@2.8.1)
+      tslib: 2.8.1
+
   merge-descriptors@1.0.3: {}
 
   merge2@1.4.1: {}
@@ -3616,7 +3745,7 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.1
 
-  monaco-editor-wrapper@6.1.1(monaco-languageclient@9.1.1(xrgslh6dyg7jyv7vhvlospek7i))(vscode-ws-jsonrpc@3.4.0):
+  monaco-editor-wrapper@6.1.1(monaco-languageclient@9.1.1(v2oimrjbt6bnatkxidjoetck24))(vscode-ws-jsonrpc@3.4.0):
     dependencies:
       '@codingame/monaco-vscode-chat-extensions-notebook-task-terminal-testing-common': 11.1.2
       '@codingame/monaco-vscode-configuration-service-override': 11.1.2
@@ -3642,7 +3771,7 @@ snapshots:
       '@codingame/monaco-vscode-views-service-override': 11.1.2
       '@codingame/monaco-vscode-workbench-service-override': 11.1.2
       monaco-editor: '@codingame/monaco-vscode-editor-api@11.1.2'
-      monaco-languageclient: 9.1.1(xrgslh6dyg7jyv7vhvlospek7i)
+      monaco-languageclient: 9.1.1(v2oimrjbt6bnatkxidjoetck24)
       vscode: '@codingame/monaco-vscode-api@11.1.2'
       vscode-languageclient: 9.0.1
       vscode-languageserver-protocol: 3.17.5
@@ -3650,7 +3779,7 @@ snapshots:
 
   monaco-editor@0.44.0: {}
 
-  monaco-languageclient@9.1.1(xrgslh6dyg7jyv7vhvlospek7i):
+  monaco-languageclient@9.1.1(v2oimrjbt6bnatkxidjoetck24):
     dependencies:
       '@codingame/monaco-vscode-api': 11.1.2
       '@codingame/monaco-vscode-configuration-service-override': 11.1.2
@@ -3691,6 +3820,7 @@ snapshots:
       '@codingame/monaco-vscode-layout-service-override': 11.1.2
       '@codingame/monaco-vscode-monarch-service-override': 11.1.2
       '@codingame/monaco-vscode-quickaccess-service-override': 11.1.2
+      '@codingame/monaco-vscode-rollup-vsix-plugin': 13.1.1(rollup@4.32.1)
       '@codingame/monaco-vscode-textmate-service-override': 11.1.2
       '@codingame/monaco-vscode-theme-defaults-default-extension': 11.1.2
       '@codingame/monaco-vscode-theme-service-override': 11.1.2
@@ -3744,9 +3874,13 @@ snapshots:
 
   path-to-regexp@0.1.12: {}
 
+  pend@1.2.0: {}
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
+
+  picomatch@4.0.2: {}
 
   postcss@8.5.1:
     dependencies:
@@ -3908,15 +4042,27 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
+  thenby@1.3.4: {}
+
+  thingies@1.21.0(tslib@2.8.1):
+    dependencies:
+      tslib: 2.8.1
+
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
 
   toidentifier@1.0.1: {}
 
+  tree-dump@1.0.2(tslib@2.8.1):
+    dependencies:
+      tslib: 2.8.1
+
   ts-api-utils@2.0.0(typescript@5.6.3):
     dependencies:
       typescript: 5.6.3
+
+  tslib@2.8.1: {}
 
   type-check@0.4.0:
     dependencies:
@@ -4011,5 +4157,10 @@ snapshots:
   ws@8.18.0: {}
 
   yallist@3.1.1: {}
+
+  yauzl@3.2.0:
+    dependencies:
+      buffer-crc32: 0.2.13
+      pend: 1.2.0
 
   yocto-queue@0.1.0: {}
