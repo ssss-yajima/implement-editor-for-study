@@ -1,12 +1,20 @@
 {
   "name": "implement-editor-for-study",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Monaco Editor with Language Server",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm -r run dev",
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "format": "pnpm -r run format",
+    "start:editor": "cd editor-ui && pnpm run dev",
+    "start:server": "cd language-server && pnpm run start"
   },
-  "keywords": [],
+  "keywords": ["monaco-editor", "language-server", "markdown"],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3"
+  }
 }
