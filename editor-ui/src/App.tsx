@@ -30,12 +30,12 @@ function App() {
   );
   registerFileSystemOverlay(1, fileSystemProvider);
 
-  const onTextChanged = useCallback((textChanges: TextChanges) => {
+  const onTextChanged = (textChanges: TextChanges) => {
     console.log("onTextChanged called");
     console.log("Changes:", textChanges);
-  }, []);
+  };
 
-  const onLoad = useCallback((wrapper: MonacoEditorLanguageClientWrapper) => {
+  const onLoad = (wrapper: MonacoEditorLanguageClientWrapper) => {
     console.log(`Loaded ${wrapper.reportStatus().join("\n").toString()}`);
     const editor = wrapper.getEditor();
     if (editor) {
@@ -43,7 +43,7 @@ function App() {
         console.log("Model content changed", e);
       });
     }
-  }, []);
+  };
 
   const wrapperConfig = createUserConfig(
     "/workspace",

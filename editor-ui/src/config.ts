@@ -88,9 +88,11 @@ export const createUserConfig = (
 			},
 		},
 		editorAppConfig: {
-			[codeUri]: {
-				text: code,
-				uri: codeUri,
+			codeResources: {
+				[codeUri]: {
+					text: code,
+					uri: codeUri,
+				},
 			},
 			monacoWorkerFactory: configureMonacoWorkers,
 		},
