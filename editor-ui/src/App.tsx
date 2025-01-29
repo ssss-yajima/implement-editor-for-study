@@ -30,6 +30,7 @@ function App() {
   registerFileSystemOverlay(1, fileSystemProvider);
 
   const onTextChanged = (textChanges: TextChanges) => {
+    console.log("onTextChanged");
     console.log(`Dirty? ${textChanges.isDirty}`);
   };
 

@@ -42,6 +42,7 @@ export const runMarkdownServer = () => {
     const connection = createConnection(reader, writer);
 
     connection.onInitialize((params: InitializeParams): InitializeResult => {
+      console.log('onInitialize');
       return {
         capabilities: {
           textDocumentSync: TextDocumentSyncKind.Incremental,
@@ -56,6 +57,7 @@ export const runMarkdownServer = () => {
     // 補完候補の提供
     connection.onCompletion(
       (_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
+        console.log('onCompletion');
         return [
           {
             label: '# ',

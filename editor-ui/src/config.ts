@@ -37,9 +37,13 @@ export const createUserConfig = (
             $type: 'WebSocketDirect',
             webSocket: webSocket,
             startOptions: {
-              onCall: (languageClient?: MonacoLanguageClient) => {
+              onCall: (
+                languageClient: MonacoLanguageClient | undefined
+              ): void => {
+                console.log('onCall');
                 if (languageClient) {
                   languageClient.start();
+                  console.log('languageClient.start()');
                 }
               },
               reportStatus: true,
