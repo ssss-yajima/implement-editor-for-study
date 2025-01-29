@@ -12,10 +12,11 @@ import {
   createConnection,
 } from 'vscode-languageserver/node.js';
 import {
+  ConsoleLogger,
   WebSocketMessageReader,
   WebSocketMessageWriter,
   createWebSocketConnection,
-} from 'vscode-ws-jsonrpc/server.js';
+} from 'vscode-ws-jsonrpc';
 import { WebSocketServer } from 'ws';
 
 // 言語サーバーの設定
@@ -84,18 +85,20 @@ const wss = new WebSocketServer({ noServer: true });
 wss.on('connection', (webSocket) => {
   const socket = {
     send: (content: string) => webSocket.send(content),
-    onMessage: (callback: (message: string) => void) =>
+    onMessage: (callback: (data: any) => void) =>
       webSocket.on('message', callback),
     onError: (callback: (error: Error) => void) =>
       webSocket.on('error', callback),
-    onClose: (callback: () => void) => webSocket.on('close', callback),
+    onClose: (callback: (code: number, reason: string) => void) =>
+      webSocket.on('close', callback),
     dispose: () => webSocket.close(),
   };
 
   // WebSocket接続を言語サーバーのconnectionに変換
-  const reader = new WebSocketMessageReader(socket);
-  const writer = new WebSocketMessageWriter(socket);
-  const socketConnection = createWebSocketConnection(reader, writer, socket);
+  // const reader = new WebSocketMessageReader(socket);
+  // const writer = new WebSocketMessageWriter(socket);
+  const logger = new ConsoleLogger();
+  const socketConnection = createWebSocketConnection(socket, logger);
 
   // 言語サーバーの接続を開始
   connection.listen();
